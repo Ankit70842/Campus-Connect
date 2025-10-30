@@ -25,6 +25,49 @@ body {
     border-color: #a5b4fc; /* indigo-300 */
 }
 
+/* Improved button hover / focus effects */
+:root {
+    --btn-transition: 180ms;
+}
+
+button, .filter-btn, .nav-link {
+    transition: transform var(--btn-transition) cubic-bezier(.2,.9,.3,1),
+                box-shadow var(--btn-transition),
+                background-color var(--btn-transition),
+                border-color var(--btn-transition);
+    will-change: transform, box-shadow;
+}
+
+.filter-btn {
+    /* keep the existing padding/shape from markup but add layering */
+    background-clip: padding-box;
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.10), 0 4px 6px rgba(0,0,0,0.04);
+}
+
+.active-filter {
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.14);
+    transform: translateY(-2px);
+}
+
+/* Accessible focus styles */
+button:focus-visible, .filter-btn:focus-visible, .nav-link:focus-visible {
+    outline: 3px solid rgba(79, 70, 229, 0.16);
+    outline-offset: 3px;
+}
+
+/* Slightly nicer floating action button hover (add soft lift) */
+#add-post-btn {
+    transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms;
+}
+#add-post-btn:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 20px 30px rgba(255, 159, 67, 0.16);
+}
+
 /* Card hover effect */
 .card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
