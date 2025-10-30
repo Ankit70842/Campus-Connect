@@ -85,3 +85,23 @@ button:focus-visible, .filter-btn:focus-visible, .nav-link:focus-visible {
     font-weight: bold;
 }
 
+/* Accessibility: respect users who prefer reduced motion
+   Remove transform/scale and transitions for interactive elements
+   while keeping non-motion feedback such as color or subtle shadow. */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --btn-transition: 0ms;
+    }
+
+    button, .filter-btn, .nav-link, #add-post-btn, .card {
+        transition: none !important;
+        /* reset any transforms applied on hover/active */
+        transform: none !important;
+    }
+
+    /* Ensure hover states still provide non-motion feedback */
+    .filter-btn:hover, #add-post-btn:hover, .card:hover {
+        box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+    }
+}
+
